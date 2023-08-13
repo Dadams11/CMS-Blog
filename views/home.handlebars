@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <!-- Add your CSS links here -->
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        {{#if loggedIn}}
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+        {{else}}
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
+        {{/if}}
+    </nav>
+
+    <h1>Welcome to our Blog!</h1>
+
+    <section>
+        {{#each posts}}
+        <article>
+            <h2><a href="/post/{{this.id}}">{{this.title}}</a></h2>
+            <p>By: {{this.username}}</p>
+            <p>Date: {{this.date_created}}</p>
+        </article>
+        {{/each}}
+    </section>
+</body>
+</html>
