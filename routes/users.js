@@ -33,7 +33,6 @@ router.post('/signup', (req, res) => {
     const hashedPassword = bcrypt.hashSync(password, 10);
     db.run("INSERT INTO users (username, password) VALUES (?, ?)", [username, hashedPassword], (err) => {
         if(err) throw err;
-        // Redirect to login or another appropriate page after signing up
         res.redirect('/users/login');
     });
 });
