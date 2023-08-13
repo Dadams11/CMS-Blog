@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CMS Blog</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a> | 
+        <a href="/dashboard">Dashboard</a> | 
+        <a href="/login">Login</a> | 
+        <a href="/logout">Logout</a>
+    </nav>
+
+    <h2>Login</h2>
+    <form action="/users/login" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+    <footer>
+        <p>&copy; 2023 CMS Blog</p>
+    </footer>
+</body>
+</html>

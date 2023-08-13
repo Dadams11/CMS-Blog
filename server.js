@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);
 const path = require('path');
+const expressHandlebars = require('express-handlebars');  // Require express-handlebars
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,12 +16,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Set up Handlebars
-app.set('view engine', 'handlebars');
-app.engine('handlebars', require('express-handlebars')({
+// Alternative setup for Handlebars
+const hbs = expressHandlebars.create({
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'views/layouts')
-}));
+});
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 // Set up sessions with SQLite
 app.use(session({
