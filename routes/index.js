@@ -33,10 +33,28 @@ router.get('/dashboard', requireLogin, (req, res) => {
     const userId = req.session.user.id;
     db.all("SELECT * FROM posts WHERE author_id = ?", [userId], (err, posts) => {
         if(err) throw err;
-        res.render('dashboard', { posts });
+        res.render('dashboard', { posts, username: req.session.user.username });  // Added username to render.
     });
 });
 
-// TODO: Add more routes for creating, updating, deleting posts, and adding comments
+// Creating a post (Placeholder)
+router.post('/create-post', requireLogin, (req, res) => {
+    // TODO: Logic for creating a post
+});
+
+// Updating a post (Placeholder)
+router.put('/update-post/:id', requireLogin, (req, res) => {
+    // TODO: Logic for updating a post
+});
+
+// Deleting a post (Placeholder)
+router.delete('/delete-post/:id', requireLogin, (req, res) => {
+    // TODO: Logic for deleting a post
+});
+
+// Adding comments to a post (Placeholder)
+router.post('/post/:id/comments', requireLogin, (req, res) => {
+    // TODO: Logic for adding comments
+});
 
 module.exports = router;

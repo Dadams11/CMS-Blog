@@ -2,12 +2,10 @@ const express = require('express');
 const session = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);
 const path = require('path');
-const expressHandlebars = require('express-handlebars');  // Require express-handlebars
+const expressHandlebars = require('express-handlebars');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// Middlewares and setups
 
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -16,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Alternative setup for Handlebars
+// Setup for Handlebars
 const hbs = expressHandlebars.create({
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'views/layouts')
@@ -29,8 +27,17 @@ app.use(session({
     store: new SQLiteStore,
     secret: 'secret-key',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { maxAge: 600000 }  // 10-minute session timeout
 }));
+
+// Check if user's session is still active
+app.use((req, res, next) => {
+    if (req.session.user && !req.cookies.user_sid) {
+        res.clearCookie('user_sid');        
+    }
+    next();
+});
 
 // Routes
 const indexRoutes = require('./routes/index');
