@@ -45,13 +45,15 @@ app.use((req, res, next) => {
 const indexRoutes = require('./routes/index');
 const userRoutes = require('./routes/users');
 
-app.use('/', userRoutes); // This line is changed
-app.use('/', indexRoutes); // Keep this for the home page
+app.use('/', indexRoutes); 
+app.use('/users', userRoutes); // Use '/users' as the prefix for user routes
 
+// 404 handler should be the last route
 app.get('*', (req, res) => {
     res.status(404).send('Page Not Found');
 });
 
+// General error handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something went wrong!');

@@ -3,24 +3,19 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 
 const User = require('../models/User');
-const Post = require('../models/Post');
-const Comment = require('../models/Comment');
 
 console.log("Users route file loaded");
 
-// Login page
 router.get('/login', (req, res) => {
     console.log("Login GET route hit");
     res.render('login');
 });
 
-// Signup page
 router.get('/signup', (req, res) => {
     console.log("Signup GET route hit");
     res.render('signup');
 });
 
-// Login Route (handle user login POST request)
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
@@ -36,7 +31,6 @@ router.post('/login', (req, res) => {
     });
 });
 
-// Signup Route (handle user signup POST request)
 router.post('/signup', (req, res) => {
     const { username, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
@@ -47,13 +41,11 @@ router.post('/signup', (req, res) => {
     });
 });
 
-// Logout Route
 router.get('/logout', (req, res) => {
     req.session.user = null;
     res.redirect('/login');
 });
 
-// Dashboard Route
 router.get('/dashboard', (req, res) => {
     if (!req.session.user) {
         return res.redirect('/login');
