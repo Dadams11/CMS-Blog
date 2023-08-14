@@ -6,7 +6,21 @@ const User = require('../models/User');
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 
-// Login Route
+console.log("Users route file loaded");
+
+// Login page
+router.get('/login', (req, res) => {
+    console.log("Login GET route hit");
+    res.render('login');
+});
+
+// Signup page
+router.get('/signup', (req, res) => {
+    console.log("Signup GET route hit");
+    res.render('signup');
+});
+
+// Login Route (handle user login POST request)
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
@@ -22,7 +36,7 @@ router.post('/login', (req, res) => {
     });
 });
 
-// Signup Route
+// Signup Route (handle user signup POST request)
 router.post('/signup', (req, res) => {
     const { username, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
