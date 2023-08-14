@@ -8,8 +8,6 @@ class Comment {
     static create(content, user_id, post_id, callback) {
         db.run("INSERT INTO comments (content, user_id, post_id) VALUES (?, ?, ?)", [content, user_id, post_id], callback);
     }
-
-    // Add other comment-related methods as necessary
 }
 
 module.exports = Comment;

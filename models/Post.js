@@ -20,8 +20,6 @@ class Post {
     static deleteById(id, callback) {
         db.run("DELETE FROM posts WHERE id = ?", [id], callback);
     }
-
-    // Add other post-related methods as necessary
 }
 
 module.exports = Post;

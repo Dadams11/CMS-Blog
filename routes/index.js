@@ -50,7 +50,7 @@ router.post('/create-post', requireLogin, (req, res) => {
             console.error(err);
             return res.status(500).send("Internal Server Error");
         }
-        res.redirect('/'); // or wherever you want to redirect after creating a post
+        res.redirect('/'); 
     });
 });
 

@@ -12,7 +12,6 @@ class User {
     static create(username, password, callback) {
         db.run("INSERT INTO users (username, password) VALUES (?, ?)", [username, password], callback);
     }
-    // Add other user-related methods as necessary
 }
 
 module.exports = User;

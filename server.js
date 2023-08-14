@@ -30,7 +30,7 @@ app.set('view engine', 'handlebars');
 app.use(session({
     store: new SQLiteStore({
         db: 'database.sqlite',
-        dir: path.join(__dirname, 'db'),  // Ensure this points to the 'db' folder.
+        dir: path.join(__dirname, 'db'),  
         table: 'sessions'
     }),
     secret: 'secret-key',
