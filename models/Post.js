@@ -1,4 +1,4 @@
-const db = new (require('sqlite3').verbose()).Database('./db/database.sqlite');
+const db = require('../db/Database');
 
 class Post {
     static findById(id, callback) {
@@ -13,7 +13,10 @@ class Post {
         db.run("INSERT INTO posts (title, content, author_id) VALUES (?, ?, ?)", [title, content, author_id], callback);
     }
 
-    // For example, delete a post by its ID
+    static update(id, title, content, callback) {
+        db.run("UPDATE posts SET title = ?, content = ? WHERE id = ?", [title, content, id], callback);
+    }
+
     static deleteById(id, callback) {
         db.run("DELETE FROM posts WHERE id = ?", [id], callback);
     }

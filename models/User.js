@@ -1,4 +1,4 @@
-const db = new (require('sqlite3').verbose()).Database('./db/database.sqlite');
+const db = require('../db/Database');
 
 class User {
     static findById(id, callback) {
