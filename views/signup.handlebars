@@ -1,41 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="card">
+  <div class="card-header">
+    <h2>Sign Up</h2>
+  </div>
+  <div id="signup" role="tabpanel">
+    <form id="signup-form" class="card-body">
+      <div>
+        <label for="username-input-signup">Username</label>
+        <input type="text" id="username-input-signup" />
+      </div>
+      <div>
+        <label for="password-input-signup">Password</label>
+        <input type="password" id="password-input-signup" />
+      </div>
+      <button type="submit" id="signup-btn" class="btn" >Signup!</button>
+      <a href="/login">Login instead</a>
+    </form>
+  </div>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - CMS Blog</title>
-    <link rel="stylesheet" href="/main.css"> <!-- Make sure this path is correct -->
-</head>
-
-<body>
-    <nav>
-        <a href="/">Home</a> | 
-        <a href="/dashboard">Dashboard</a> | 
-        <a href="/login">Login</a> | 
-        <a href="/logout">Logout</a>
-    </nav>
-
-    <div class="container"> <!-- Added container for styling -->
-        <h2>Signup</h2>
-        <form action="/users/signup" method="post"> <!-- Ensure this route is correct -->
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Signup</button>
-            </div>
-        </form>
-    </div>
-
-    <footer>
-        <p>&copy; 2023 CMS Blog</p>
-    </footer>
-</body>
-
-</html>
+<script src="/javascript/signup.js"></script>

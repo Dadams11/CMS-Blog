@@ -1,25 +1,16 @@
-const db = require('../db/Database');
+const { Sequelize, Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection.js');
 
-class Post {
-    static findById(id, callback) {
-        db.get("SELECT * FROM posts WHERE id = ?", [id], callback);
-    }
+class Post extends Model {}
 
-    static findAll(callback) {
-        db.all("SELECT * FROM posts", callback);
-    }
-
-    static create(title, content, author_id, callback) {
-        db.run("INSERT INTO posts (title, content, author_id) VALUES (?, ?, ?)", [title, content, author_id], callback);
-    }
-
-    static update(id, title, content, callback) {
-        db.run("UPDATE posts SET title = ?, content = ? WHERE id = ?", [title, content, id], callback);
-    }
-
-    static deleteById(id, callback) {
-        db.run("DELETE FROM posts WHERE id = ?", [id], callback);
-    }
-}
+Post.init(
+  {
+    title: DataTypes.STRING,
+    body: DataTypes.STRING
+  },
+  {
+    sequelize
+  }
+);
 
 module.exports = Post;

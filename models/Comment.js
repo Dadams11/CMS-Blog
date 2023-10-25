@@ -1,13 +1,19 @@
-const db = require('../db/Database');
 
-class Comment {
-    static findByPostId(postId, callback) {
-        db.all("SELECT * FROM comments WHERE post_id = ?", [postId], callback);
-    }
+const { Sequelize, Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-    static create(content, user_id, post_id, callback) {
-        db.run("INSERT INTO comments (content, user_id, post_id) VALUES (?, ?, ?)", [content, user_id, post_id], callback);
+class Comment extends Model {}
+
+Comment.init(
+  {
+    body: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
-}
+  },
+  {
+    sequelize
+  }
+);
 
 module.exports = Comment;
